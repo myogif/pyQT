@@ -23,7 +23,11 @@ class MyApp(QMainWindow):
         self.serial.data_available.connect(self.update_terminal)
         
     def update_terminal(self, data):
-        nc.sendUDP(data,"agi-in")
+        ID = self.ui.lineEdit_ID.text()
+        IP = self.ui.lineEdit_IP.text()
+        PORT = self.ui.lineEdit_Port.text()
+        nc.sendUDP(data,ID, IP, PORT)
+        data = data
         self.ui.txt_Result.append(data)
         #print(data);
     

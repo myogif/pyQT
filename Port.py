@@ -42,6 +42,8 @@ class customSerial(QObject):
     def read_serial(self):
         while (self.alive.isSet() and self.serialPort.is_open):
             data = self.serialPort.readline().decode('utf-8').strip()
+            data = data[15:].replace(" ", "")
+            
             if(len(data) > 1):
                 self.data_available.emit(data)
                 
